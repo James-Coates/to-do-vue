@@ -7,7 +7,6 @@
           type="text"
           placeholder="Add todo"
           v-model="currentTodo"
-          @input="currentTodo = $event.target.value"
           @keydown.enter="addTodo()"
           @click="clearEdit()"
         />

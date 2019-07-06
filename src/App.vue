@@ -11,13 +11,13 @@
           @click="clearEdit()"
         />
       </md-field>
-      <md-list>
-        <md-list-item @click="editTodo(todo)" v-for="todo in todos" :key="todo.id">
+      <ul class="todo-list">
+        <li class="todo-list-item" v-for="todo in todos" :key="todo.id">
           <md-card class="todo-item">
             <div class="container__checkbox">
               <md-checkbox v-model="array" :value="todo.id" @change="toggleTodo(todo)"></md-checkbox>
             </div>
-            <div class="container__label">
+            <div class="container__label" @dblclick="editTodo(todo)">
               <p
                 v-if="todo.id !== editedTodoId"
                 v-bind:class="{'complete': todo.completed}"
@@ -38,8 +38,8 @@
               </md-button>
             </div>
           </md-card>
-        </md-list-item>
-      </md-list>
+        </li>
+      </ul>
       <p class="md-caption">* Double click to edit todo</p>
     </div>
   </div>
@@ -64,7 +64,6 @@ export default {
       this.todoCount ++
     },
     toggleTodo(todo) {
-      console.log('reached')
       todo.completed = !todo.completed
     },
     deleteTodo(todo) {
@@ -72,11 +71,11 @@ export default {
       this.todos.splice(index, 1);
     },
     editTodo(todo) {
-      console.log('edit todo')
-      this.currentEdit = '';
+      this.currentEdit = todo.label;
       this.editedTodoId = todo.id;
     },
     submitEdit(todoId) {
+      console.log('submit edit');
       const todo = this.todos.find(todo => todo.id == todoId);
       const todoIndex = this.todos.indexOf(todo);
       this.todos[todoIndex].label = this.currentEdit;
@@ -93,6 +92,16 @@ export default {
 <style>
 .todo-app .md-list {
   padding: 0;
+}
+
+.todo-list {
+  padding: 0;
+}
+
+.todo-list-item {
+  display: block;
+  padding: 0;
+  margin-bottom: 5px;
 }
 
 .todo-item {

@@ -1,6 +1,6 @@
 <template>
   <div class="md-layout md-alignment-top-center todo-app">
-    <div class="md-layout-item md-size-50">
+    <div class="md-layout-item md-size-50 md-small-size-90">
       <h1 class="md-display-3">Todo App</h1>
       <md-field>
         <md-input
